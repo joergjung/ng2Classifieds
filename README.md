@@ -1,4 +1,6 @@
-# ng2-play.ts
+# Angular2 test application with Firebase
+
+# using ng2-play (https://github.com/pkozlowski-opensource/ng2-play)
 
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
