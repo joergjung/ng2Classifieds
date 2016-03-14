@@ -23,12 +23,20 @@ System.register(['angular2/core', 'angular2/platform/browser'], function(exports
         execute: function() {
             App = (function () {
                 function App() {
-                    this.name = 'World';
+                    this.ref = new Firebase('https://jj-ngclassifieds.firebaseio.com/');
+                    this.classifieds = [];
+                    var classifieds = this.classifieds;
+                    this.ref.on('value', function (data) {
+                        data.forEach(function (child) {
+                            classifieds.push(child.val());
+                        });
+                    });
                 }
                 App = __decorate([
                     core_1.Component({
                         selector: 'app',
-                        template: "\n        <h1>Hello, {{name}}!</h1>\n        Say hello to: <input [value]=\"name\" (input)=\"name = $event.target.value\">\n    "
+                        template: "\n        <div class=\"row\">\n            <div *ngFor=\"#classified of classifieds\" class=\"col-sm-4\">\n                <div class=\"thumbnail\">\n                    <img src=\"{{ classified.image }}\">\n                    <div class=\"caption\">\n                        <h2>{{ classified.title }}</h2>\n                        <h3>{{ classified.price | currency:'USD':true }}</h3>\n                        <p>{{ classified.description }}</p>\n                        <div *ngIf=\"classified.showContact\">\n                            <p>{{ classified.contact.name }}</p>\n                            <p>{{ classified.contact.phone }}</p>\n                            <p>{{ classified.contact.email }}</p> \n                        </div>\n                        <button\n                            (click)=\"classified.showContact = true\"\n                            *ngIf=\"!classified.showContact\"\n                            class=\"btn btn-primary\">\n                            Contact\n                        </button>\n                        \n                        <button\n                            (click)=\"classified.showContact = false\"\n                            *ngIf=\"classified.showContact\"\n                            class=\"btn btn-primary\">\n                            Details\n                        </button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    ",
+                        styles: ["\n        .thumbnail { height: 500px; }\n    "]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], App);
