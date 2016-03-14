@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/platform/browser'], function(exports
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, browser_1;
-    var HelloApp;
+    var App;
     return {
         setters:[
             function (core_1_1) {
@@ -21,21 +21,21 @@ System.register(['angular2/core', 'angular2/platform/browser'], function(exports
                 browser_1 = browser_1_1;
             }],
         execute: function() {
-            HelloApp = (function () {
-                function HelloApp() {
+            App = (function () {
+                function App() {
                     this.name = 'World';
                 }
-                HelloApp = __decorate([
+                App = __decorate([
                     core_1.Component({
-                        selector: 'hello-app',
+                        selector: 'app',
                         template: "\n        <h1>Hello, {{name}}!</h1>\n        Say hello to: <input [value]=\"name\" (input)=\"name = $event.target.value\">\n    "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], HelloApp);
-                return HelloApp;
+                ], App);
+                return App;
             }());
-            exports_1("HelloApp", HelloApp);
-            browser_1.bootstrap(HelloApp);
+            exports_1("App", App);
+            browser_1.bootstrap(App);
         }
     }
 });
